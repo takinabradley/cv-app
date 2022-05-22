@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import UserImg from './components/UserImg/UserImg'
+import UserContact from './components/UserContact/UserContact';
+import UserEducation from './components/UserEducation/UserEducation';
+import UserExperience from './components/UserExperience/UserExperience'
+import appStyles from './styles/app-styles.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      user: {
+        img: null,
+        contact: { name: '', phone: '', email: '', profession: '' },
+        education: { school: '', study: '', date: '' },
+        experience: []
+      },
+      experienceTemplate: {
+        company: '', title: '', tasks: '', startDate: '', endDate: ''
+      }
+    }
+    
+    this.onChangeUser = this.onChangeUser.bind(this)
+  }
+
+  onChangeUser(field, change) {
+    this.setState({
+      user: {
+        ...this.state.user,
+        [field]: change,
+      }
+    })
+  }
+
+  render() {
+    const { img, contact, education, experience } = this.state.user
+    return (
+      <div className="app">
+        <main>
+          <div className='app-top'>
+            <UserImg  img={img} onChangeUser={this.onChangeUser}/>
+            <UserContact  contact={contact} onChangeUser={this.onChangeUser}/>
+            <UserEducation  education={education} onChangeUser={this.onChangeUser}/>
+          </div>
+
+          <div className="app-bottom">
+            <UserExperience
+              experience={experience}
+              onChangeUser={this.onChangeUser}
+              experienceTemplate={{ ...this.state.experienceTemplate }}
+            />
+          </div>
+        </main>
+        
+      </div>
+    )
+  }
 }
 
 export default App;
