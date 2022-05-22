@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './user-experience.css'
+
 export default class UserExperience extends React.Component {
   constructor(props) {
     super(props)
@@ -30,7 +31,6 @@ export default class UserExperience extends React.Component {
     const index = e.target.parentNode.getAttribute('data-key')
     allExperience.splice(index, 1)
 
-    e.target.style.visibility = 'hidden'
     this.props.onChangeUser('experience', allExperience)
   }
 
@@ -50,15 +50,16 @@ export default class UserExperience extends React.Component {
 
   onClickAdd() {
     const allExperience = this.props.experience;
-    allExperience.push(this.props.experienceTemplate)
+    allExperience.push(this.props.experienceTemplate())
     
     this.props.onChangeUser('experience', allExperience)
   }
 
   render() {
     const experienceCards = this.props.experience.map((object, index) => {
+      console.log(object.id)
       return (
-        <form className="experience-card" data-key={index} key={index} onChange={this.onChangeField}>
+        <form className="experience-card" data-key={index} key={object.id} onChange={this.onChangeField}>
           <button type='button' onClick={this.onClickEdit}>Edit</button>
           <button className='experience-card-remove' type='button' onClick={this.onClickRemove}>Remove</button>
           <label>

@@ -4,6 +4,8 @@ import UserContact from './components/UserContact/UserContact';
 import UserEducation from './components/UserEducation/UserEducation';
 import UserExperience from './components/UserExperience/UserExperience'
 import appStyles from './styles/app-styles.css'
+import uniqid from 'uniqid'
+import * as uuid from 'uuid'
 
 class App extends React.Component {
   constructor(props) {
@@ -16,11 +18,17 @@ class App extends React.Component {
         education: { school: '', study: '', date: '' },
         experience: []
       },
-      experienceTemplate: {
-        company: '', title: '', tasks: '', startDate: '', endDate: ''
-      }
     }
-    
+
+    this.experienceTemplate = () => ({
+          company: '',
+          title: '',
+          tasks: '',
+          startDate: '',
+          endDate: '',
+          id: uniqid()
+    })
+
     this.onChangeUser = this.onChangeUser.bind(this)
   }
 
@@ -48,7 +56,7 @@ class App extends React.Component {
             <UserExperience
               experience={experience}
               onChangeUser={this.onChangeUser}
-              experienceTemplate={{ ...this.state.experienceTemplate }}
+              experienceTemplate={this.experienceTemplate}
             />
           </div>
         </main>
