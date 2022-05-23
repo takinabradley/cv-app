@@ -24,12 +24,13 @@ export default class EditableUserInfo extends React.Component {
 
   onClickRemove(e) {
     if (this.props.info.id) {
+      // If this component is used inside another to create many editable fields,
+      // pass the ID value back to a parent component to deal with removal
       const id = { id: this.props.info.id}
       this.props.onChangeField(id)
     } else {
-      this.props.onChangeField(null)
+      this.props.onChangeField({})
     }
-    
   }
 
   onChangeField(e) {
@@ -37,6 +38,7 @@ export default class EditableUserInfo extends React.Component {
     if (e.target.getAttribute('type') === 'checkbox') return;
 
     let field = e.target.name;
+    //pass edited object back to parent function
     this.props.onChangeField({
       ...this.props.info,
       [field]: e.target.value
@@ -75,12 +77,27 @@ export default class EditableUserInfo extends React.Component {
       )
     }
 
+    let removeButton;
+    if (this.props.removable) {
+      removeButton = (
+        <button
+          className="editable-user-info-remove"
+          type="button"
+          onClick={this.onClickRemove}
+        >
+          Remove
+        </button>
+      );
+    } else {
+      removeButton = null;
+    }
+
     if (elements.length === 0) return;
     return (
       <div className="editable-user-info" onChange={this.onChangeField}>
         <form action="">
           <input className='editable-user-info-edit' type='checkbox' onClick={this.onClickEdit} />
-          {(this.props.removable) ? <button className='editable-user-info-remove' type='button' onClick={this.onClickRemove}>Remove</button> : ''} 
+          {removeButton} 
           {elements}
         </form>
       </div>
