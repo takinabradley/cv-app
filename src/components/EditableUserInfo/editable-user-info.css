@@ -1,10 +1,10 @@
-.user-education-edit {
+.editable-user-info-edit {
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
 }
 
-.user-education-edit::before {
+.editable-user-info-edit::before {
   content: 'Edit';
 
   border: 1px solid gray;
@@ -14,11 +14,11 @@
   vertical-align: bottom;
 }
 
-.user-education-edit:checked::before {
+.editable-user-info-edit:checked::before {
   background-color: green;
 }
 
-.user-education-component input:disabled {
+.editable-user-info input:disabled {
   border: none;
   color: initial;
   border: 2px solid white;

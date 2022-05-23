@@ -1,11 +1,9 @@
 import React from "react";
 import UserImg from "./components/UserImg/UserImg";
-import UserContact from "./components/UserContact/UserContact";
-import UserEducation from "./components/UserEducation/UserEducation";
 import UserExperience from "./components/UserExperience/UserExperience";
+import EditableUserInfo from './components/EditableUserInfo/EditableUserInfo'
 import appStyles from "./styles/app-styles.css";
 import uniqid from "uniqid";
-import * as uuid from "uuid";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +13,7 @@ class App extends React.Component {
     /*
       Thought separating state into individual properties might keep whole app
       from updating, but I guess not. Any State change === rerender, I suppose.
-      
+
       img: null,
       contact: { name: "", phone: "", email: "", profession: "" },
       education: { school: "", study: "", date: "" },
@@ -63,9 +61,9 @@ class App extends React.Component {
         <main>
           <div className="app-top">
             <UserImg img={img} onChangeUser={this.onChangeUser} />
-            <UserContact contact={contact} onChangeUser={this.onChangeUser} />
-            <UserEducation education={education}
-              onChangeUser={this.onChangeUser}
+            <EditableUserInfo info={contact} fieldName='contact' onChangeUser={this.onChangeUser} />
+            <EditableUserInfo info={education}
+              fieldName='education' onChangeUser={this.onChangeUser}
             />
           </div>
 
