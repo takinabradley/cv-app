@@ -14,19 +14,11 @@ export default class UserContact extends React.Component {
 
 
   onChangeField(e) {
-    const onChangeUser = this.props.onChangeUser;
-    let field;
-    if (e.target.id === 'user-contact-name') {
-      field = 'name'
-    } else if (e.target.id === 'user-contact-phone') {
-      field = 'phone'
-    } else if (e.target.id === 'user-contact-email') {
-      field = 'email'
-    } else if (e.target.id === 'user-contact-profession') {
-      field = 'profession'
-    }
-
-    onChangeUser('contact', { ...this.props.contact, [field]: e.target.value })
+    let field = e.target.name;
+    this.props.onChangeUser('contact', {
+      ...this.props.contact,
+      [field]: e.target.value
+    })
   }
 
   render() {
@@ -37,22 +29,22 @@ export default class UserContact extends React.Component {
           <button type='button' onClick={this.onClickEdit}>Edit</button>
           <label htmlFor="user-contact-name">
             <span>Name:</span>
-            <input id='user-contact-name' type="text" value={name} disabled/>
+            <input id='user-contact-name' type="text" name='name' value={name} disabled/>
           </label>
 
           <label htmlFor="user-contact-phone">
             <span>Phone:</span>
-            <input id='user-contact-phone' type="telephone" value={phone} disabled/>
+            <input id='user-contact-phone' type="telephone" name='phone' value={phone} disabled/>
           </label>
 
           <label htmlFor="user-contact-email">
             <span>Email:</span>
-            <input id='user-contact-email' type="email" value={email} disabled/>
+            <input id='user-contact-email' type="email" name="email" value={email} disabled/>
           </label>
 
           <label htmlFor="user-contact-profession">
             <span>Profession:</span>
-            <input id='user-contact-profession' type="text" value={profession} disabled/>
+            <input id='user-contact-profession' type="text" name="profession" value={profession} disabled/>
           </label>
         </form>
       </div>

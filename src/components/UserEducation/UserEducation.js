@@ -14,19 +14,11 @@ export default class UserEducation extends React.Component {
 
 
   onChangeField(e) {
-    const onChangeUser = this.props.onChangeUser;
-    let field;
-    if (e.target.id === 'user-education-school') {
-      field = 'school'
-    } else if (e.target.id === 'user-education-study') {
-      field = 'study'
-    } else if (e.target.id === 'user-education-date') {
-      field = 'date'
-    } else if (e.target.id === 'user-education-profession') {
-      field = 'profession'
-    }
-
-    onChangeUser('education', { ...this.props.education, [field]: e.target.value })
+    let field = e.target.getAttribute('name')
+    this.props.onChangeUser('education', {
+      ...this.props.education,
+      [field]: e.target.value
+    })
   }
 
   render() {
@@ -38,17 +30,17 @@ export default class UserEducation extends React.Component {
           
           <label htmlFor="user-education-school">
             <span>School:</span>
-            <input id='user-education-school' type="text" value={school} disabled/>
+            <input id='user-education-school' type="text" name='school' value={school} disabled/>
           </label>
 
           <label htmlFor="user-education-study">
             <span>Study:</span>
-            <input id='user-education-study' type="text" value={study} disabled/>
+            <input id='user-education-study' type="text" name='study' value={study} disabled/>
           </label>
 
           <label htmlFor="user-education-date">
             <span>Date:</span>
-            <input id='user-education-date' type="date" value={date} disabled/>
+            <input id='user-education-date' type="date" name='date' value={date} disabled/>
           </label>
 
         </form>
