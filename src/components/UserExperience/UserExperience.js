@@ -10,21 +10,17 @@ export default class UserExperience extends React.Component {
     this.onClickAdd = this.onClickAdd.bind(this)
     this.onClickRemove = this.onClickRemove.bind(this)
 
-    this.removeButton = null;
   }
 
   onClickEdit(e) {
-    const formInputs = e.target.parentNode.querySelectorAll('input, textArea')
-    formInputs.forEach(input => input.toggleAttribute('disabled'))
-    const removeButton = e.target.nextElementSibling
-    if (getComputedStyle(removeButton).visibility === 'hidden') {
-      removeButton.style.visibility = 'visible'
-    } else {
-      removeButton.style.visibility = 'hidden'
-    }
+    //keeps edit checkbox enabled
+    const formInputs = e.target.parentNode.querySelectorAll(
+      'input:not(input[type="checkbox"]), textArea'
+    )
 
-    this.removeButton = removeButton 
+    formInputs.forEach(input => input.toggleAttribute('disabled'))
   }
+
 
   onClickRemove(e) {
     const allExperience = this.props.experience
@@ -57,11 +53,18 @@ export default class UserExperience extends React.Component {
 
   render() {
     const experienceCards = this.props.experience.map((object, index) => {
-      console.log(object.id)
+
       return (
         <form className="experience-card" data-key={index} key={object.id} onChange={this.onChangeField}>
-          <button type='button' onClick={this.onClickEdit}>Edit</button>
-          <button className='experience-card-remove' type='button' onClick={this.onClickRemove}>Remove</button>
+          <input type="checkbox" className='experience-card-edit' onClick={this.onClickEdit}/>
+          <button
+            className='experience-card-remove'
+            type='button'
+            onClick={this.onClickRemove}
+          >
+            Remove
+          </button>
+
           <label>
             <span>Company:</span>
             <input type="text" value={object.company} name='company' disabled/>

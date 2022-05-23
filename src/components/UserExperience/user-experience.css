@@ -1,3 +1,45 @@
 .experience-card-remove {
   visibility: hidden;
 }
+
+.experience-card-edit {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.experience-card-edit::before {
+  content: 'Edit';
+
+  border: 1px solid gray;
+  padding: 3px 7px;
+  background-color: gainsboro;
+  border-radius: 3px;
+  vertical-align: bottom;
+}
+
+.experience-card-edit:checked::before {
+  background-color: green;
+}
+
+.experience-card-edit:checked + .experience-card-remove {
+  visibility: visible;
+}
+
+.experience-card input:disabled, .experience-card textarea:disabled {
+  border: none;
+  color: initial;
+}
+
+
+/* .experience-card-edit {
+  visibility: hidden;
+}
+
+.experience-card:hover > .experience-card-edit {
+  visibility: visible;
+}
+
+.experience-card-edit:checked + .experience-card-remove {
+  visibility: visible;
+} */
