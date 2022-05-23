@@ -18,8 +18,22 @@
   background-color: green;
 }
 
+.editable-user-info input:not([type=checkbox]) {
+  background: none;
+  border: 1px solid gray;
+}
+
 .editable-user-info input:disabled {
   border: none;
   color: initial;
-  border: 2px solid white;
+  border: 1px solid white;
+}
+
+.editable-user-info-remove {
+  visibility: hidden;
+  box-sizing: border-box;
+}
+
+.editable-user-info-edit:checked + .editable-user-info-remove {
+  visibility: visible;
 }

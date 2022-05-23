@@ -54,6 +54,7 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     const { img, contact, education, experience } = this.state.user;
     return (
@@ -61,16 +62,27 @@ class App extends React.Component {
         <main>
           <div className="app-top">
             <UserImg img={img} onChangeUser={this.onChangeUser} />
-            <EditableUserInfo info={contact} fieldName='contact' onChangeUser={this.onChangeUser} />
-            <EditableUserInfo info={education}
-              fieldName='education' onChangeUser={this.onChangeUser}
+            <EditableUserInfo
+              info={contact}
+              onChangeField={(change) => this.onChangeUser('contact', change)}
+              removable={true}
+            />
+
+            <EditableUserInfo
+              info={education}
+              onChangeField={(change) => this.onChangeUser('education', change)}
             />
           </div>
 
           <div className="app-bottom">
-            <UserExperience
+            {/* <UserExperience
               experience={experience}
               onChangeUser={this.onChangeUser}
+              experienceTemplate={this.experienceTemplate}
+            /> */}
+            <UserExperience
+              experience={experience}
+              onChangeField={(change) => this.onChangeUser('experience', change)}
               experienceTemplate={this.experienceTemplate}
             />
           </div>
