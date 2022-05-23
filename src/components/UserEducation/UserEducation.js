@@ -1,4 +1,5 @@
 import React from "react"
+import styles from './user-education.css'
 export default class UserEducation extends React.Component {
   constructor(props) {
     super(props)
@@ -8,7 +9,7 @@ export default class UserEducation extends React.Component {
   }
 
   onClickEdit(e) {
-    const formInputs = e.target.parentNode.querySelectorAll('input')
+    const formInputs = e.target.parentNode.querySelectorAll('input:not([type="checkbox"])')
     formInputs.forEach(input => input.toggleAttribute('disabled'))
   }
 
@@ -26,7 +27,7 @@ export default class UserEducation extends React.Component {
     return (
       <div className='user-education-component'>
         <form action="" onChange={this.onChangeField}>
-          <button type='button' onClick={this.onClickEdit}>Edit</button>
+          <input className='user-education-edit' type='checkbox' onClick={this.onClickEdit}/>
           
           <label htmlFor="user-education-school">
             <span>School:</span>

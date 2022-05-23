@@ -1,10 +1,10 @@
-.user-contact-edit {
+.user-education-edit {
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
 }
 
-.user-contact-edit::before {
+.user-education-edit::before {
   content: 'Edit';
 
   border: 1px solid gray;
@@ -14,11 +14,11 @@
   vertical-align: bottom;
 }
 
-.user-contact-edit:checked::before {
+.user-education-edit:checked::before {
   background-color: green;
 }
 
-.user-contact-component input:disabled {
+.user-education-component input:disabled {
   border: none;
   color: initial;
   border: 2px solid white;

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './user-contact.css'
 export default class UserContact extends React.Component {
   constructor(props) {
     super(props)
@@ -8,7 +9,7 @@ export default class UserContact extends React.Component {
   }
 
   onClickEdit(e) {
-    const formInputs = e.target.parentNode.querySelectorAll('input')
+    const formInputs = e.target.parentNode.querySelectorAll('input:not(input[type="checkbox"]')
     formInputs.forEach(input => input.toggleAttribute('disabled'))
   }
 
@@ -26,7 +27,7 @@ export default class UserContact extends React.Component {
     return (
       <div className="user-contact-component" onChange={this.onChangeField}>
         <form action="">
-          <button type='button' onClick={this.onClickEdit}>Edit</button>
+          <input className='user-contact-edit' type='checkbox' onClick={this.onClickEdit}/>
           <label htmlFor="user-contact-name">
             <span>Name:</span>
             <input id='user-contact-name' type="text" name='name' value={name} disabled/>
