@@ -1,5 +1,6 @@
 .experience-card-remove {
   visibility: hidden;
+  box-sizing: border-box;
 }
 
 .experience-card-edit {
@@ -29,17 +30,5 @@
 .experience-card input:disabled, .experience-card textarea:disabled {
   border: none;
   color: initial;
+  border: 2px solid white;
 }
-
-
-/* .experience-card-edit {
-  visibility: hidden;
-}
-
-.experience-card:hover > .experience-card-edit {
-  visibility: visible;
-}
-
-.experience-card-edit:checked + .experience-card-remove {
-  visibility: visible;
-} */
