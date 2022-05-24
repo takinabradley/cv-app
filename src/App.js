@@ -2,7 +2,7 @@ import React from "react";
 import UserImg from "./components/UserImg/UserImg";
 import UserExperience from "./components/UserExperience/UserExperience";
 import EditableUserInfo from './components/EditableUserInfo/EditableUserInfo'
-import appStyles from "./styles/app-styles.css";
+import "./styles/app.css";
 import uniqid from "uniqid";
 
 class App extends React.Component {
@@ -28,10 +28,10 @@ class App extends React.Component {
       id: uniqid(),
     });
 
-    this.onChangeUser = this.onChangeUser.bind(this);
+    this.changeUser = this.changeUser.bind(this);
   }
 
-  onChangeUser(field, change) {
+  changeUser(field, change) {
     this.setState({
       user: {
         ...this.state.user,
@@ -45,29 +45,29 @@ class App extends React.Component {
     const { img, contact, education, experience } = this.state.user;
     return (
       <div className="app">
-        <main>
+
           <div className="app-top">
-            <UserImg img={img} onChangeUser={this.onChangeUser} />
+            <UserImg img={img} onChangeImg={(change) => this.changeUser('img', change)} />
+
             <EditableUserInfo
               info={contact}
-              onChangeField={(change) => this.onChangeUser('contact', change)}
-              removable={true}
+              onChangeField={(change) => this.changeUser('contact', change)}
             />
 
             <EditableUserInfo
               info={education}
-              onChangeField={(change) => this.onChangeUser('education', change)}
+              onChangeField={(change) => this.changeUser('education', change)}
             />
           </div>
 
           <div className="app-bottom">
             <UserExperience
               experience={experience}
-              onChangeField={(change) => this.onChangeUser('experience', change)}
+              onChangeField={(change) => this.changeUser('experience', change)}
               experienceTemplate={this.experienceTemplate}
             />
           </div>
-        </main>
+
       </div>
     );
   }
