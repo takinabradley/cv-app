@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/cv-app/static/css/main.3253bf5e.css",
+    "main.js": "/cv-app/static/js/main.31b840c2.js",
+    "static/js/787.777453b1.chunk.js": "/cv-app/static/js/787.777453b1.chunk.js",
+    "index.html": "/cv-app/index.html",
+    "static/media/pencil.svg": "/cv-app/static/media/pencil.a3ff265f24dd777106ee.svg",
+    "static/media/blank-image.svg": "/cv-app/static/media/blank-image.14c2bba6fb884aa77ccd8a8629157d92.svg",
+    "static/media/trash-can-outline.svg": "/cv-app/static/media/trash-can-outline.a36668c170b4a131a6fa401a4f725596.svg",
+    "static/media/check-bold.svg": "/cv-app/static/media/check-bold.64c8fc49a9ad76582782.svg",
+    "static/media/plus-thick.svg": "/cv-app/static/media/plus-thick.b1d5bbe50b453753f0771ea090aa8060.svg",
+    "main.3253bf5e.css.map": "/cv-app/static/css/main.3253bf5e.css.map",
+    "main.31b840c2.js.map": "/cv-app/static/js/main.31b840c2.js.map",
+    "787.777453b1.chunk.js.map": "/cv-app/static/js/787.777453b1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3253bf5e.css",
+    "static/js/main.31b840c2.js"
+  ]
+}
