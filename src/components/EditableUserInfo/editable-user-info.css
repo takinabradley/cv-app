@@ -5,33 +5,33 @@
 }
 
 .editable-user-info-edit::before {
-  content: 'Edit';
-
-  border: 1px solid gray;
-  padding: 3px 5px;
-  background-color: gainsboro;
-  border-radius: 3px;
-  vertical-align: bottom;
+  content: url('./pencil.svg');
 }
 
 .editable-user-info-edit:checked::before {
-  background-color: green;
+  content: url('./check-bold.svg');
 }
 
-.editable-user-info input:not([type=checkbox]) {
+.editable-user-info input:not([type='checkbox']), .editable-user-info textarea {
   background: none;
-  border: 1px solid gray;
+  border: 1px solid darkgray;
+  resize: none;
+  overflow: auto;
+  width: min-content;
 }
 
-.editable-user-info input:disabled {
+.editable-user-info input:disabled, .editable-user-info textarea:disabled {
   border: none;
-  color: initial;
+  color: slategray;
   border: 1px solid white;
 }
 
 .editable-user-info-remove {
   visibility: hidden;
   box-sizing: border-box;
+  background: none;
+  border: none;
+  font-weight: 900;
 }
 
 .editable-user-info-edit:checked + .editable-user-info-remove {

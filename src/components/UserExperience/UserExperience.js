@@ -1,15 +1,17 @@
 import React from "react";
 import EditableUserInfo from "../EditableUserInfo/EditableUserInfo";
-
+import './user-experience.css'
+import plusImg from './plus-thick.svg'
 export default class UserExperience extends React.Component {
   constructor(props) {
     super(props)
 
     this.onChangeField = this.onChangeField.bind(this)
     this.onClickAdd = this.onClickAdd.bind(this)
+    
   }
 
-
+  
   onChangeField(object) {
     const allExperience = this.props.experience;
     const index = allExperience.findIndex((obj) => obj.id === object.id)
@@ -42,8 +44,10 @@ export default class UserExperience extends React.Component {
 
     return (
       <div className="user-experience-component">
-        <button onClick={this.onClickAdd}>Add</button>
-        {experienceCards}
+        <button className="user-experience-component-add" onClick={this.onClickAdd}>
+          <img src={plusImg} alt="add" />
+        </button>
+        <div className="user-experience-cards">{experienceCards}</div>
       </div>
     );
   }

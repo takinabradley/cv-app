@@ -1,0 +1,155 @@
+/* General Layout */
+:root {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+main {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+}
+
+.editable-user-info input:not([type='checkbox']):disabled,
+.editable-user-info textarea:disabled {
+  border: none;
+}
+
+.editable-user-info input:not([type='checkbox']),
+.editable-user-info textarea {
+  border: 1px solid gray;
+}
+/* Top Bar */
+.app-top {
+  display: flex;
+  gap: 1%;
+  height: 30%;
+  padding: 1%;
+}
+
+/* User Img */
+.app-top .user-img-component {
+  flex: .5 0 200px;
+  width: 100%;
+  height: 100%;
+}
+
+.app-top .user-img-component * {
+  width: 100%;
+  height: 100%;
+}
+
+/* Top User Info */
+.app-top .editable-user-info > label{
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 1%;
+}
+
+.app-top .editable-user-info {
+  flex: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1%;
+  border: 1px solid lightgray;
+  background-color: whitesmoke;
+  border-radius: 5px;
+
+  font-size: 1.5rem;
+}
+
+.app-top .editable-user-info .editable-user-info-edit::before {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.app-top .editable-user-info input {
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+
+/* App Bottom */
+.app-bottom {
+  height: 70%;
+  padding: 1%;
+}
+
+.user-experience-component {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-experience-component-add {
+  align-self: flex-end;
+}
+
+.user-experience-cards {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24%, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 1%;
+}
+
+.user-experience-cards .editable-user-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid gray;
+  text-transform: capitalize;
+  background-color: whitesmoke;
+}
+
+.user-experience-cards .editable-user-info label {
+  height: 100%;
+  font-size: 1.25rem;
+}
+
+.user-experience-cards .editable-user-info input:not([type='checkbox']),
+.user-experience-cards .editable-user-info textarea {
+  display: block;
+  width: 89%;
+  font-size: 1.25rem;
+}
+
+.user-experience-cards .editable-user-info textarea {
+  height: 60%;
+}
+
+.user-experience-cards .editable-user-info-edit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.user-experience-cards .editable-user-info-remove {
+  position: absolute;
+  top: 30px;
+  right: 2px;
+}
+
+
+

@@ -1,0 +1,10 @@
+.user-experience-component-add {
+  display: flex;
+  border: 1px solid lightgray;
+}
+
+.user-experience-component-add:active {
+  display: flex;
+  background-color: lightgray;
+  border: 1px solid lightgray;
+}

@@ -1,6 +1,6 @@
 import React from "react"
 import noUserImg from './blank-image.svg'
-import styles from './user-img.css'
+import './user-img.css'
 
 export default class UserImg extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class UserImg extends React.Component {
   changeUserImg(e) {
     const img = URL.createObjectURL(e.target.files[0]);
     
-    this.props.onChangeUser('img', img)
+    this.props.onChangeImg(img)
   }
 
   render() {
