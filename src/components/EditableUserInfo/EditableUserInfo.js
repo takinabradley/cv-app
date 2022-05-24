@@ -1,16 +1,15 @@
 import React from "react";
-import styles from './editable-user-info.css'
-
+import './editable-user-info.css'
+import trashIcon from './trash-can-outline.svg'
 /* Props: 
     info: An object with keys representing the editable fields.
     onChangeField: a callback to the parent component to change state. 
       Should know what state to change without passing in a prop
-    removable: true or false
+    removable: true or false, obvious
 */
 export default class EditableUserInfo extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log(props)
+  constructor({info, onChangeField, removable}) {
+    super(arguments[0])
     
     this.onClickEdit = this.onClickEdit.bind(this)
     this.onChangeField = this.onChangeField.bind(this)
@@ -18,7 +17,7 @@ export default class EditableUserInfo extends React.Component {
   }
 
   onClickEdit(e) {
-    const formInputs = e.target.parentNode.querySelectorAll('input:not(input[type="checkbox"]')
+    const formInputs = e.target.parentNode.querySelectorAll('input:not(input[type="checkbox"]), textarea')
     formInputs.forEach(input => input.toggleAttribute('disabled'))
   }
 
@@ -53,6 +52,7 @@ export default class EditableUserInfo extends React.Component {
     const elements = [];
     for (const key in this.props.info) {
       if (key === 'id') continue
+      let inputElem;
       
       let type = 'text'
       if (key === 'email') {
@@ -63,16 +63,30 @@ export default class EditableUserInfo extends React.Component {
         type = 'date'
       }
 
-      elements.push(
-        <label htmlFor={"editable-user-info-" + key} key={key}>
-          <span>{key}:</span>
+      if (key !== 'tasks') {
+        inputElem = (
           <input
-            id={"user-contact-" + key}
-            type={type}
-            name={key}
-            value={this.props.info[key]}
-            disabled
+              type={type}
+              name={key}
+              value={this.props.info[key]}
+              disabled
           />
+        )
+      } else {
+        inputElem = (
+          <textarea
+              name={key}
+              value={this.props.info[key]}
+              disabled
+          />
+        )
+      }
+      
+
+      elements.push(
+        <label key={key}>
+          <span>{key}:</span>
+          {inputElem}
         </label>
       )
     }
@@ -85,7 +99,7 @@ export default class EditableUserInfo extends React.Component {
           type="button"
           onClick={this.onClickRemove}
         >
-          Remove
+          <img src={trashIcon} alt="delete" />
         </button>
       );
     } else {
@@ -94,13 +108,12 @@ export default class EditableUserInfo extends React.Component {
 
     if (elements.length === 0) return;
     return (
-      <div className="editable-user-info" onChange={this.onChangeField}>
-        <form action="">
+
+        <form action="" className="editable-user-info" onChange={this.onChangeField}>
           <input className='editable-user-info-edit' type='checkbox' onClick={this.onClickEdit} />
           {removeButton} 
           {elements}
         </form>
-      </div>
     );
   }
 }
