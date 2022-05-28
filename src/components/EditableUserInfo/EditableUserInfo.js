@@ -7,68 +7,67 @@ import trashIcon from './trash-can-outline.svg'
       Should know what state to change without passing in a prop
     removable: true or false, obvious
 */
-export default class EditableUserInfo extends React.Component {
-  constructor({info, onChangeField, removable}) {
-    super(arguments[0])
-    
-    this.onClickEdit = this.onClickEdit.bind(this)
-    this.onChangeField = this.onChangeField.bind(this)
-    this.onClickRemove = this.onClickRemove.bind(this)
-  }
 
-  onClickEdit(e) {
+export default function EditableUserInfo({ info, onChangeField, removable }) {
+  function onClickEdit(e) {
+    //start edit
     const formInputs = e.target.parentNode.querySelectorAll('input:not(input[type="checkbox"]), textarea')
     formInputs.forEach(input => input.toggleAttribute('disabled'))
+
+    //possible future confirm edit
   }
 
-  onClickRemove(e) {
-    if (this.props.info.id) {
+  function onClickRemove(e) {
+    if (info.id) {
       // If this component is used inside another to create many editable fields,
       // pass the ID value back to a parent component to deal with removal
-      const id = { id: this.props.info.id}
-      this.props.onChangeField(id)
+      const id = { id: info.id}
+      onChangeField(id)
     } else {
-      this.props.onChangeField({})
+      onChangeField({})
     }
   }
 
-  onChangeField(e) {
+  function changeField(e) {
+    console.log(e.target)
     // do not continue if the edit checkbox is clicked.
     if (e.target.getAttribute('type') === 'checkbox') return;
 
     let field = e.target.name;
     //pass edited object back to parent function
-    this.props.onChangeField({
-      ...this.props.info,
+    onChangeField({
+      ...info,
       [field]: e.target.value
     })
   }
 
-  render() {
-    /* this could be done better, but would also force the object data structure
-      it takes in to be more complicated */
-    if (this.props.info === null) return null;
+  function decideInputType(key) {
+    if (key === 'email') {
+      return 'email'
+    } else if (key === 'phone') {
+      return 'phone'
+    } else if (key === 'date' || key === 'startDate' || key === 'endDate') {
+      return 'date'
+    } else {
+      return 'text'
+    }
+  }
 
+  function createElementsFromInfo(info) {
+    /* this could be done better, but would also force the object data structure
+    it takes in to be more complicated */
     const elements = [];
-    for (const key in this.props.info) {
+    for (const key in info) {
       if (key === 'id') continue
+      let type = decideInputType(key)
       let inputElem;
-      
-      let type = 'text'
-      if (key === 'email') {
-        type = 'email'
-      } else if (key === 'phone') {
-        type = 'phone'
-      } else if (key === 'date' || key === 'startDate' || key === 'endDate') {
-        type = 'date'
-      }
 
       if (key !== 'tasks') {
         inputElem = (
           <input
               type={type}
               name={key}
-              value={this.props.info[key]}
+              value={info[key]}
               disabled
           />
         )
@@ -76,13 +75,12 @@ export default class EditableUserInfo extends React.Component {
         inputElem = (
           <textarea
               name={key}
-              value={this.props.info[key]}
+              value={info[key]}
               disabled
           />
         )
       }
       
-
       elements.push(
         <label key={key}>
           <span>{key}:</span>
@@ -91,29 +89,32 @@ export default class EditableUserInfo extends React.Component {
       )
     }
 
-    let removeButton;
-    if (this.props.removable) {
-      removeButton = (
-        <button
+    return elements
+  }
+
+  function createRemoveButton() {
+    return (
+      <button
           className="editable-user-info-remove"
           type="button"
-          onClick={this.onClickRemove}
+          onClick={onClickRemove}
         >
           <img src={trashIcon} alt="delete" />
         </button>
-      );
-    } else {
-      removeButton = null;
-    }
-
-    if (elements.length === 0) return;
-    return (
-
-        <form action="" className="editable-user-info" onChange={this.onChangeField}>
-          <input className='editable-user-info-edit' type='checkbox' onClick={this.onClickEdit} />
-          {removeButton} 
-          {elements}
-        </form>
-    );
+    )
   }
+
+  
+  if (info === null) return null;
+  const elements = createElementsFromInfo(info)
+  let removeButton = (removable) ? createRemoveButton() : null
+  if (elements.length === 0) return null; 
+  return (
+    <form action="" className="editable-user-info" onChange={changeField}>
+      <input className='editable-user-info-edit' type='checkbox' onClick={onClickEdit} />
+      {removeButton} 
+      {elements}
+    </form>
+  );
 }
+

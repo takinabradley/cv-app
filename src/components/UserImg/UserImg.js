@@ -2,26 +2,17 @@ import React from "react"
 import noUserImg from './blank-image.svg'
 import './user-img.css'
 
-export default class UserImg extends React.Component {
-  constructor(props) {
-    super(props)
+export default function UserImg ({onChangeImg, img}) {
 
-    this.changeUserImg = this.changeUserImg.bind(this)
+  function changeUserImg(e) {
+    const newImg = URL.createObjectURL(e.target.files[0]);
+    onChangeImg(newImg)
   }
 
-  changeUserImg(e) {
-    const img = URL.createObjectURL(e.target.files[0]);
-    
-    this.props.onChangeImg(img)
-  }
-
-  render() {
-    const img = (this.props.img) ? this.props.img : noUserImg
-    return (
-      <div className='user-img-component'>
-        <label htmlFor="img-select"><img src={img} alt="" /></label>
-        <input type="file" name='img-select' id='img-select' onChange={this.changeUserImg}/>
-      </div>
-    )
-  }
+  return (
+    <div className='user-img-component'>
+      <label htmlFor="img-select"><img src={(img) ? img : noUserImg} alt="" /></label>
+      <input type="file" name='img-select' id='img-select' onChange={changeUserImg}/>
+    </div>
+  )
 }
